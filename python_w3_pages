@@ -1,13 +1,19 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
-class BasePage:
+class W3SchoolsPage:
     def __init__(self, driver):
         self.driver = driver
 
-
-class W3SchoolsPage(BasePage):
-    LOGO = (By.XPATH, "//img[@alt='W3Schools.com']")
+    def open(self, url):
+        self.driver.get(url)
 
     def is_logo_present(self):
-        return self.driver.find_element(*self.LOGO).is_displayed()
+        logo_locator = (By.XPATH, "//a[@class='w3-left']")
+        try:
+            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(logo_locator))
+            return True
+        except:
+            return False
