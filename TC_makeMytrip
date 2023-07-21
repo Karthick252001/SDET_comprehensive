@@ -1,0 +1,67 @@
+package com.qa.testscripts;
+
+import java.awt.AWTException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+public class TC_makeMytrip extends testbaseformakemytrip {
+	@Test
+	public void makeMytrip() throws AWTException, InterruptedException {
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+		Boolean WebSite = driver.getTitle()
+				.contains("MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday");
+
+		if (WebSite) {
+			System.out.println("\n\r" + "USER LANDED ON THE GOOGLE MEET WEBSITE");
+		} else {
+			System.out.println("USER WAS NOT LANDED ON THE GOOGLE MEET WEBSITE");
+		}
+		driver.navigate().refresh();
+
+		List<WebElement> triptype = makeMytripOR.getOneway();
+		for (WebElement trip : triptype) {
+			String nameofthetrip = trip.getText();
+			if (nameofthetrip.equals("oneWayTrip")) {
+				Boolean selectedoneway = trip.isDisplayed();
+				if (selectedoneway) {
+					System.out.println("OneWayTrip is already selected");
+				} else {
+					trip.click();
+				}
+			}
+		}
+
+		makeMytripOR.getFromcity().click();
+		makeMytripOR.getFromcityinput().sendKeys("Chennai");
+		Thread.sleep(3000);
+
+		List<WebElement> FM = makeMytripOR.getsuggestion();
+		for (WebElement item : FM) {
+
+			if (item.getText().contains("Chennai, India\r\n"))
+				System.out.println("Form Chenai selected");
+			item.click();
+			System.out.println("Form Chenai selected");
+			break;
+		}
+
+		Thread.sleep(3000);
+		makeMytripOR.getTOcity().click();
+		Thread.sleep(3000);
+		makeMytripOR.getTOcityinput().sendKeys("salem");
+		Thread.sleep(3000);
+		List<WebElement> FMm = makeMytripOR.getsuggestion();
+		for (WebElement item1 : FMm) {
+
+			if (item1.getText().contains("Salem"))
+				System.out.println("To salem selected");
+			item1.click();
+			break;
+		}
+
+	}
+}
