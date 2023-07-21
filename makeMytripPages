@@ -1,0 +1,69 @@
+package com.qa.pages;
+
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class makeMytripPages {
+	WebDriver driver;
+
+	@FindBy(xpath = "//*[@id=\"SW\"]/div[1]/div[2]/div/div/nav/ul/li[1]/div/a")
+	WebElement Filight;
+
+	public WebElement getFlighticon() {
+		return Filight;
+	}
+
+	@FindAll(@FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/div/div/div[1]/ul/li/span"))
+	List<WebElement> Oneway;
+
+	public List<WebElement> getOneway() {
+		return Oneway;
+	}
+
+	@FindBy(xpath = "//input[@id='fromCity']")
+	WebElement Fromcity;
+
+	public WebElement getFromcity() {
+		return Fromcity;
+	}
+
+	@FindBy(xpath = "/html/body/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div[1]/div[1]/div/div/div/input")
+	WebElement Fromcityinput;
+
+	public WebElement getFromcityinput() {
+		return Fromcityinput;
+	}
+
+	@FindAll(@FindBy(xpath = "//*[@id=\"react-autowhatever-1\"]/div/ul/li/div"))
+	List<WebElement> suggestion;
+
+	public List<WebElement> getsuggestion() {
+		return suggestion;
+	}
+
+	@FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/div/div/div[2]/div[1]/div[2]/label")
+	WebElement Tocity;
+
+	public WebElement getTOcity() {
+		return Tocity;
+	}
+
+	@FindBy(xpath = "/html/body/div[1]/div/div[2]/div/div/div/div[2]/div[1]/div[2]/div[1]/div/div/div[1]/input")
+	WebElement Tocityinput;
+
+	public WebElement getTOcityinput() {
+		return Tocityinput;
+	}
+
+	public makeMytripPages(WebDriver rdriver) {
+		this.driver = rdriver;
+		PageFactory.initElements(rdriver, this);
+	}
+
+}
+
