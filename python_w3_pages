@@ -1,0 +1,13 @@
+from selenium.webdriver.common.by import By
+
+
+class BasePage:
+    def __init__(self, driver):
+        self.driver = driver
+
+
+class W3SchoolsPage(BasePage):
+    LOGO = (By.XPATH, "//img[@alt='W3Schools.com']")
+
+    def is_logo_present(self):
+        return self.driver.find_element(*self.LOGO).is_displayed()
