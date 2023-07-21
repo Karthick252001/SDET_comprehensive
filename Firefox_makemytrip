@@ -1,0 +1,28 @@
+package Firefox_makemytrip;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class MakeMyTripLogoVerification {
+	public static void main(String[] args) {
+		WebDriver driver;
+		// System.setProperty("webdriver.gecko.driver", "");
+		WebDriverManager.firefoxdriver().setup();
+		driver = new FirefoxDriver();
+		driver.get("https://www.makemytrip.com/");
+
+		WebElement logoElement = driver.findElement(By.xpath("//a[@title='MakeMyTrip']//img[@alt='MakeMyTrip']"));
+
+		if (logoElement.isDisplayed()) {
+			System.out.println("MakeMyTrip logo is present on the page.");
+		} else {
+			System.out.println("MakeMyTrip logo is NOT present on the page.");
+		}
+
+		driver.quit();
+	}
+}
